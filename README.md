@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # weather_app
 
 A new Flutter project.
@@ -15,3 +16,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# weather-app
+weather app using flutter
+>>>>>>> 9d313c693182bbd6431744f006c61b3fe6dbe9fe
