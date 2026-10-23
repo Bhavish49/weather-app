@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/additional_information_widget.dart';
-import 'package:weather_app/secrets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:weather_app/weather_forecast_card_widget.dart';
 
 class Homepage extends StatefulWidget {
@@ -54,10 +54,17 @@ class _HomepageState extends State<Homepage> {
 
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
+      final apiKey = dotenv.env['OPENWEATHER_API_KEY'] ??
+          const String.fromEnvironment('OPENWEATHER_API_KEY');
+
+      if (apiKey.isEmpty) {
+        throw 'API key not found. Please set OPENWEATHER_API_KEY in your .env file.';
+      }
+
       final query = Uri.encodeComponent(cityName);
       final res = await http.get(
         Uri.parse(
-          "https://api.openweathermap.org/data/2.5/forecast?q=$query&APPID=$api_id",
+          "https://api.openweathermap.org/data/2.5/forecast?q=$query&APPID=$apiKey",
         ),
       );
 
@@ -228,7 +235,7 @@ class _HomepageState extends State<Homepage> {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: _popularCities.length,
-                      separatorBuilder: (_, __) => const SizedBox(width: 8),
+                      separatorBuilder: (_, _) => const SizedBox(width: 8),
                       itemBuilder: (context, index) {
                         final city = _popularCities[index];
                         final isSelected = cityName.toLowerCase() == city.toLowerCase() ||
