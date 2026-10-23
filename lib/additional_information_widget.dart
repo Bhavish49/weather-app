@@ -15,11 +15,17 @@ class AdditionalInformationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon),
-        SizedBox(height: 10),
-        Text(condition),
-        SizedBox(height: 10),
-        Text(level),
+        Icon(icon, size: 32),
+        const SizedBox(height: 8),
+        Text(
+          condition,
+          style: const TextStyle(fontSize: 14),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          level,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }

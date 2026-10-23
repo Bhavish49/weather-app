@@ -16,19 +16,30 @@ class WeatherForecastCardWidget extends StatelessWidget {
     return SizedBox(
       width: 100,
       child: Card(
-        elevation: 10,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 time,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 8),
-              Icon(icon),
-              SizedBox(height: 8),
-              Text(temp, style: TextStyle(fontSize: 12)),
+              const SizedBox(height: 8),
+              Icon(icon, size: 32),
+              const SizedBox(height: 8),
+              Text(
+                temp,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 12),
+              ),
             ],
           ),
         ),
